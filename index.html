@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍦 Vanilla To do 🍦</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Raleway:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="wrap" class="wrap">
+        <div class="content">
+            <!-- login -->
+            <section id="login" class="section table vanilla-login" data-login="off">
+                <div class="cell">
+                    <h1 id="title" class="title">🍦 Vanilla To do 🍦</h1>
+                    <!-- clock -->
+                    <div class="vanilla-today">
+                        <h2 id="today" class="vanilla-date">Jan 01 2022</h2>
+                        <h2 id="clock" class="vanilla-clock">00:00:00</h2>
+                    </div>
+                    <!-- // -->
+                    <form id="loginForm" class="form form--login hidden">
+                        <input type="text" class="ipt ipt--username" maxlength="15" placeholder="What is your name?" required>
+                        <input type="submit" class="ipt ipt--submit ipt--primary" value="Log in">
+                    </form>
+                    <div id="loginResult" class="result hidden">
+                        <h2 id="greeting" class="vanilla-greeting">OOO</h2>
+                        <button type="button" id="btnLogOut" class="btn btn--logout">Log out</button>
+                    </div>
+                </div>
+            </section>
+            <!-- // -->
+            <!-- dashboard -->
+            <section id="dashboard" class="section vanilla-dashboard hidden">
+                <!-- to do list -->
+                <div class="todo-wrap">
+                    <form id="todoForm" class="form flex">
+                        <fieldset>
+                            <legend>To Do Form</legend>
+                            <div class="form-input">
+                                <input type="text" id="iptTodo" class="ipt ipt--todo" placeholder="할 일을 입력하세여" autocomplete="off" required>
+                            </div>
+                        </fieldset>
+                        <input type="submit" class="ipt ipt--submit ipt--write ipt--primary" title="작성하기" value="📝">
+                    </form>
+                    <ul id="todoList" class="list-todo">
+                        <li>
+                            <div class="list-todo__disabled">
+                                예시) 코로나 걸리지 않기!
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- // -->
+            </section>
+            <!-- // -->
+        </div>
+    </div>
+
+    <script src="js/greeting.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/todo.js"></script>
+</body>
+</html>
