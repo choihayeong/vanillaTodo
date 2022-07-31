@@ -1,0 +1,5 @@
+@charset "UTF-8";
+.title {color:#fff}
+.bg--pc {background-color:orange;}
+.bg--tablet {background-color:purple}
+.bg--mobile {background-color:cornflowerblue}
