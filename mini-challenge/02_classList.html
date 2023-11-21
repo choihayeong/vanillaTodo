@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <title>ClassList</title>
+  <meta charset="UTF-8" />
+  <style>
+    .title {
+      color: #fff;
+    }
+    .bg--pc {
+      background-color: orange;
+    }
+    .bg--tablet {
+      background-color: purple;
+    }
+    .bg--mobile {
+      background-color: cornflowerblue;
+    }
+  </style>
+</head>
+<body class="bg">
+  <h1 class="title">Hello!</h1>
+
+  <script>
+    const body = document.body;
+
+    function changeBgColor() {
+      if (window.innerWidth >= 1024) {
+        body.classList.add("bg--pc");
+        body.classList.remove("bg--tablet");
+        body.classList.remove("bg--mobile");
+      } else if (window.innerWidth >= 640) {
+        body.classList.remove("bg--pc");
+        body.classList.add("bg--tablet");
+        body.classList.remove("bg--mobile");
+      } else {
+        body.classList.remove("bg--pc");
+        body.classList.remove("bg--tablet");
+        body.classList.add("bg--mobile");
+      }
+    }
+
+    changeBgColor();
+
+    window.addEventListener("resize", changeBgColor);
+  </script>
+</body>
+</html>

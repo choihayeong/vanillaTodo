@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+  <title>🎲 Casino 🎲</title>
+  <meta charset="UTF-8" />
+  <style>
+    /* custom your style.......... */
+    .center-container {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="center-container">
+      <h1>🎲 Random Number Game 🎲</h1>
+
+      <form id="gameForm">
+        <h2>
+          Generate a number between 0 and
+          <input type="number" id="rangeInput" min="1" step="1" required />
+        </h2>
+        Guess the number:
+        <input type="number" id="guessInput" min="0" step="1" required />
+        <input type="submit" value="Play!" />
+      </form>
+
+      <div id="gameResult" class="result" style="display: none">
+        You choose : <span id="yourNum"></span>, the machine choose :
+        <span id="machineNum"></span>
+        <br />
+        <strong id="resultMsg"></strong>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const gameForm = document.querySelector("#gameForm");
+    const rangeInput = gameForm.querySelector("#rangeInput");
+    const guessInput = gameForm.querySelector("#guessInput");
+
+    function handleSubmit(event) {
+      event.preventDefault();
+
+      const gameResult = document.querySelector("#gameResult");
+      const yourNum = gameResult.querySelector("#yourNum");
+      const machineNum = gameResult.querySelector("#machineNum");
+      const resultMsg = gameResult.querySelector("#resultMsg");
+
+      gameResult.style.display = "block";
+
+      const maxNum = Number(rangeInput.value);
+      const guessNum = Number(guessInput.value);
+      const randomNum = Math.ceil(Math.random() * maxNum);
+
+      yourNum.innerText = guessNum;
+      machineNum.innerText = randomNum;
+
+      if (guessNum === randomNum) {
+        resultMsg.innerText = "You Win! 😎";
+      } else {
+        resultMsg.innerText = "You Lost....... 🙄";
+      }
+    }
+
+    gameForm.addEventListener("submit", handleSubmit);
+  </script>
+</body>
+</html>

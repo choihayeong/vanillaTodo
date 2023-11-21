@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+  <title>🎄 Time Until Christmas Eve 🎄</title>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      margin: 0;
+      box-sizing: border-box;
+    }
+    fieldset {
+      margin: 0;
+      padding: 0;
+      border: 0 none;
+    }
+    legend {
+      position:absolute;
+      top:0;
+      left:0;
+      overflow:hidden;
+      margin:-1px;
+      width:1px;
+      height:1px;
+      clip:rect(0 0 0 0);
+    }
+    main {
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+    section + section {
+      margin-block-start: 3em;
+    }
+    .center-container {
+      flex: 1;
+      text-align: center;
+    }
+    .js-clock {
+      font-size: 1.5em;
+      margin-block-start: 0.83em;
+      margin-block-end: 0.83em;
+    }
+    .box {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+    button, input[type="submit"] {
+      margin-block-start: 1em;
+      padding: 1em;
+      border: 0 none;
+      border-radius: 8px;
+      background: none;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+      font-size: 1em;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      margin-block-start: 0.8em;
+      padding: 0.8em 1em;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 1.2em;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <main>
+      <div class="center-container">
+        <h1>🎄 Time Until Christmas Eve 🎄</h1>
+
+        <section class="d-day">
+          <div class="js-clock" data-date="12/24" data-title="X-MAS 🎄">
+            After <strong id="leftDays"></strong>Days <br>
+            <strong id="leftHours"></strong>Hours <br>
+            <strong id="leftMinutes"></strong>Minutes <br>
+            <strong id="leftSeconds"></strong>Seconds
+          </div>
+
+          <h2 class="d-day__message">It's Christmas! 🎄</h2>
+        </section>
+
+        <!-- custom..... :P -->
+        <section>
+          <div class="box">
+            <h2>Make your Wish 🙏</h2>
+
+            <form id="wishForm">
+              <fieldset>
+                <legend>Make your Wish 🙏</legend>
+                <label for="iptWish">
+                  My wish is.... <br>
+                  <input type="text" id="iptWish" placeholder="e.g. I get huge money for me 💰">
+                </label>
+              </fieldset>
+              <input type="submit" value="Send to your Santa 🎅">
+            </form>
+
+            <button type="button">Santa's Advice 🎅</button>
+          </div>
+        </section>
+        <!-- // -->
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // X-MAS D-Day
+    const clockEl = document.querySelector(".js-clock");
+    const leftDays = document.getElementById("leftDays");
+    const leftHours = document.getElementById("leftHours");
+    const leftMinutes = document.getElementById("leftMinutes");
+    const leftSeconds = document.getElementById("leftSeconds");
+
+    let interavalId;
+
+    const SECOND_IN_MS = 1000;
+    const MINUTE_IN_MS = SECOND_IN_MS * 60;
+    const HOUR_IN_MS = MINUTE_IN_MS * 60;
+    const DAY_IN_MS = HOUR_IN_MS * 24;
+
+    const getCountDown = () => {
+      const TODAY = new Date();
+      const THIS_YEAR = TODAY.getFullYear();
+      const NEXT_YEAR = TODAY.getFullYear() + 1;
+      const THIS_YEAR_XMAS_EVE = new Date(`${THIS_YEAR}-12-24 00:00:00+0900`);
+      const NEXT_YEAR_XMAS_EVE = new Date(`${NEXT_YEAR}-12-24 00:00:00+0900`);
+
+      /*
+        해당 연도의 클쓰마스 지났다면 => 다음연도 클쓰마스 카운트다운
+        해당 연도의 클쓰마스 아직 이라면 => 당해 연도 클쓰마스 카운트다운
+      */
+
+      const IS_THIS_YEAR_OVER = (THIS_YEAR_XMAS_EVE - TODAY) < 0;
+      const DIFF = IS_THIS_YEAR_OVER ? (NEXT_YEAR_XMAS_EVE - TODAY) : (THIS_YEAR_XMAS_EVE - TODAY);
+
+      return {
+        days : Math.floor(DIFF / DAY_IN_MS),
+        hours : Math.floor((DIFF % DAY_IN_MS) / HOUR_IN_MS),
+        minutes : Math.floor((DIFF % HOUR_IN_MS) / MINUTE_IN_MS),
+        seconds : Math.floor((DIFF % MINUTE_IN_MS) / SECOND_IN_MS),
+      };
+    };
+
+    const printDday = () => {
+      leftDays.textContent = getCountDown().days;
+      leftHours.textContent = getCountDown().hours;
+      leftMinutes.textContent = getCountDown().minutes;
+      leftSeconds.textContent = getCountDown().seconds;
+    };
+
+    clockEl ? interavalId = setInterval(printDday, SECOND_IN_MS) : clearInterval(interavalId);
+
+    // Make a wish
+    const wishForm = document.getElementById("wishForm");
+    const wishMessage = wishForm.querySelector("#iptWish");
+
+    const getUserWish = ele => {
+      ele.preventDefault();
+      const USER_WISH = wishMessage.value;
+      // [wip.....]
+
+    }
+
+    wishForm.addEventListener("submit", getUserWish);
+  </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+  <title>D-day Generator 📆</title>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      margin: 0;
+      box-sizing: border-box;
+    }
+    fieldset {
+      margin: 0;
+      padding: 0;
+      border: 0 none;
+    }
+    legend {
+      position:absolute;
+      top:0;
+      left:0;
+      overflow:hidden;
+      margin:-1px;
+      width:1px;
+      height:1px;
+      clip:rect(0 0 0 0);
+    }
+    main {
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+    section + section {
+      margin-block-start: 3em;
+    }
+    .center-container {
+      flex: 1;
+      text-align: center;
+    }
+    .js-clock {
+      font-size: 1.5em;
+      margin-block-start: 0.83em;
+      margin-block-end: 0.83em;
+    }
+    .box {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+    button, input[type="submit"] {
+      margin-block-start: 1em;
+      padding: 1em;
+      border: 0 none;
+      border-radius: 8px;
+      background: none;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+      font-size: 1em;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      margin-block-start: 0.8em;
+      padding: 0.8em 1em;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 1.2em;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <main>
+      <div class="center-container">
+        <h1>D-day Generator 📆</h1>
+
+        <form id="targetDateForm">
+          <fieldset>
+            <legend>D-day Generator 📆</legend>
+            <div class="form-item">
+              <label for="iptTargetDate">
+                <input type="date" id="iptTargetDate">
+              </label>
+            </div>
+            <div class="form-item">
+              <label for="iptTargetTitle">
+                <input type="text" id="iptTargetTitle">
+              </label>
+            </div>
+          </fieldset>
+          <input type="submit" value="Generate!">
+        </form>
+
+        <section class="d-day">
+          <div class="js-clock">
+            After <strong id="leftDays"></strong>Days <br>
+            <strong id="leftHours"></strong>Hours <br>
+            <strong id="leftMinutes"></strong>Minutes <br>
+            <strong id="leftSeconds"></strong>Seconds
+          </div>
+
+          <h2 class="d-day__message">It's { data-title }</h2>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // 
+    const clockEl = document.querySelector(".js-clock");
+    const leftDays = document.getElementById("leftDays");
+    const leftHours = document.getElementById("leftHours");
+    const leftMinutes = document.getElementById("leftMinutes");
+    const leftSeconds = document.getElementById("leftSeconds");
+
+    let interavalId;
+
+    const printDday = () => {
+
+      return {
+        days: Math.floor(diff / DAY_IN_MS),
+        seconds: Math.floor((diff % MINUTE_IN_MS) / SECOND_IN_MS)
+      }
+    };
+
+    // clockEl ? interavalId = setInterval(printDday, SECOND_IN_MS) : clearInterval(interavalId);
+
+    // Get Target Date
+    const targetDateForm = document.getElementById("targetDateForm");
+    const targetDate = targetDateForm.querySelector("#iptTargetDate");
+
+    const TODAY = new Date();
+
+    const SECOND_IN_MS = 1000;
+    const MINUTE_IN_MS = SECOND_IN_MS * 60;
+    const HOUR_IN_MS = MINUTE_IN_MS * 60;
+    const DAY_IN_MS = HOUR_IN_MS * 24;
+
+    targetDate.min = `${TODAY.getFullYear()}-${TODAY.getMonth() + 1}-${TODAY.getDate() + 1}`;
+
+    const getTargetDate = ele => {
+      ele.preventDefault();
+
+      const TARGET_DATE = new Date(targetDate.value);
+      const DIFF = TARGET_DATE - TODAY;
+      
+      let aa = printDday(DIFF);
+      clockEl ? interavalId = setInterval(printDday, SECOND_IN_MS) : clearInterval(interavalId);
+    }
+
+    targetDateForm.addEventListener("submit", getTargetDate);
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <title>seProperty</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: var(--body-background-color, #aaa);
+    }
+    .title {
+      color: #ccc;
+      mix-blend-mode: difference;
+    }
+  </style>
+</head>
+<body class="bg">
+  <h1 class="title">Hello!</h1>
+
+  <script>
+    const body = document.body;
+
+    const changeBgColor = () => {
+      let ww = window.innerWidth;
+
+      console.log(ww);
+
+      if (ww >= 1024) {
+        body.style.setProperty("--body-background-color", "orange");
+      } else if (ww >= 750) {
+        body.style.setProperty("--body-background-color", "purple");
+      } else {
+        body.style.setProperty("--body-background-color", "cornflowerblue");
+      }
+    }
+
+    window.addEventListener("resize", changeBgColor);
+  </script>
+</body>
+</html>

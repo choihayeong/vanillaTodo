@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <title>Gradient BG</title>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+    button {
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="generateBtn">Give me color</button>
+
+  <script>
+    const colors = [
+      "#ef5777",
+      "#575fcf",
+      "#4bcffa",
+      "#34e7e4",
+      "#0be881",
+      "#f53b57",
+      "#3c40c6",
+      "#0fbcf9",
+      "#00d8d6",
+      "#05c46b",
+      "#ffc048",
+      "#ffdd59",
+      "#ff5e57",
+      "#d2dae2",
+      "#485460",
+      "#ffa801",
+      "#ffd32a",
+      "#ff3f34",
+    ];
+
+    const generateBtn = document.querySelector("#generateBtn");
+
+    function generateGradient() {
+      const body = document.body;
+
+      const rndNum01 = Math.floor(Math.random() * colors.length);
+      let rndNum02;
+
+      do {
+        rndNum02 = Math.floor(Math.random() * colors.length);
+      } while (rndNum01 === rndNum02);
+
+      const startColor = colors[rndNum01];
+      const lastColor = colors[rndNum02];
+
+      body.setAttribute(
+        "style",
+        `background:linear-gradient(to left, ${startColor}, ${lastColor})`,
+      );
+    }
+
+    generateBtn.addEventListener("click", generateGradient);
+  </script>
+</body>
+</html>
