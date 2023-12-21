@@ -58,14 +58,3 @@ getClock();
 setInterval(getClock ,1000);
 
 getDate();
-
-// padStart()로 대체
-/* function twoDigits(ele) {
-    if(ele < 10) {
-        ele = `0${ele}`;
-    } else {
-        ele = `${ele}`;
-    }
-
-    return ele;
-} */
