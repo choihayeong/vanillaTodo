@@ -31,7 +31,7 @@ const superEventHandler = {
   handleRightClick: function () {
     h2.style.color = colors[3];
     h2.innerText = "That was a right click!";
-  }
+  },
 };
 
 h2.addEventListener("mouseenter", superEventHandler.handleMouseEnter);

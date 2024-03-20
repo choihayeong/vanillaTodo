@@ -1,0 +1,34 @@
+{
+  "name": "vanillatodo",
+  "version": "1.0.0",
+  "description": "simple todo list with vanillaJS 🍦",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/choihayeong/vanillaTodo.git"
+  },
+  "keywords": [
+    "todo"
+  ],
+  "author": "hychoi <hychoi318@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/choihayeong/vanillaTodo/issues"
+  },
+  "homepage": "https://github.com/choihayeong/vanillaTodo#readme",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "3.2.5"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
+}
