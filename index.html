@@ -23,7 +23,7 @@
           data-login="off"
         >
           <div class="cell">
-            <h1 id="title" class="title">🍦 Vanilla To do 🍦</h1>
+            <h1 class="title">🍦 Vanilla To do 🍦</h1>
             <!-- clock -->
             <div class="vanilla-today">
               <h2 id="today" class="vanilla-date">Jan 01 2022</h2>
@@ -31,18 +31,21 @@
             </div>
             <!-- // -->
             <form id="loginForm" class="form form--login hidden">
-              <input
-                type="text"
-                class="ipt ipt--username"
-                maxlength="15"
-                placeholder="What is your name?"
-                required
-              />
-              <input
-                type="submit"
-                class="ipt ipt--submit ipt--primary"
-                value="Log in"
-              />
+              <fieldset>
+                <legend>local host login</legend>
+                <input
+                  type="text"
+                  class="ipt ipt--username"
+                  maxlength="15"
+                  placeholder="What is your name?"
+                  required
+                />
+                <input
+                  type="submit"
+                  class="ipt ipt--submit ipt--primary"
+                  value="Log in"
+                />
+              </fieldset>
             </form>
             <div id="loginResult" class="result hidden">
               <h2 id="greeting" class="vanilla-greeting">OOO</h2>

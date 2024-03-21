@@ -54,7 +54,10 @@ function getDate() {
   vanillaToday.innerText = `${todayMonth} ${todayDate} (${todayWeekDay}) ${todayYear}`;
 }
 
-getClock();
-setInterval(getClock, 1000);
+// getClock();
 
-getDate();
+window.addEventListener("DOMContentLoaded", () => {
+  setInterval(getClock, 1000);
+
+  getDate();
+});
